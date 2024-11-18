@@ -1,27 +1,15 @@
-# Test
+## Building angular app inside bun image hangs
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+This repo has example code to reproduce an issue I am facing when trying to build an Angular 18 application inside a oven/bun:1.1.34 docker image
 
-## Development server
+Instructions to reproduce:
+  - Download the repo
+  - run "docker compose up"
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The Dockerfile being built used in the repo was just created to show a simple example of what is happening,
+whenever I try to build an Angular application inside the docker Bun image it hangs (gets stuck) indefinitely.
+This issue was first noticed when trying to run the angular tests with "ng test" in a CI/CD pipeline. 
+After a lot of investigation I realised that the same problem occurs whenever trying to build the app from inside the container.
+I have also tried staring from a Debian image and then installing Bun, the same issue occurred. 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
